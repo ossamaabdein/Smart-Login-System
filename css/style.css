@@ -2,8 +2,22 @@ body {
     display: flex;
     align-items: center;
     justify-content: center;
+    background-color: #23343e;
 }
 
 #smartLogin {
-    width: 75%;
+    width: 50%;
+}
+
+#successfulPage {
+    height: 80vh;
+    border-radius: 10px;
+}
+
+.successPage {
+    /* background: #23343e; */
+}
+
+a {
+    text-decoration: none;
 }
