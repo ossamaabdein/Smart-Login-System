@@ -7,16 +7,13 @@ var signupBtn = document.getElementById("signupBtn");
 var nameAlert = document.getElementById("nameAlert");
 var emailAlert = document.getElementById("emailAlert");
 var passwordAlert = document.getElementById("passwordAlert");
+var successAlert = document.getElementById("successAlert");
 var loginMailInput = document.getElementById("loginMailInput");
 var loginPasswordInput = document.getElementById("loginPasswordInput");
 var loginBtn = document.getElementById("loginBtn");
 var loginAlert = document.getElementById("loginAlert");
 var userName = document.getElementById("userName");
-var inputs = document.getElementsByTagName("input");
-
-// var bla;
-// var currentName;
-
+var inputs = document.getElementsByTagName("input");    
 var users = [];     
 
 
@@ -36,6 +33,7 @@ function addData() {
 }
 
 
+//  sign-up after email validation
 signupBtn.addEventListener("click", function() {
     if (nameInput.classList.contains("is-valid") && emailInput.classList.contains("is-valid") && passwordInput.classList.contains("is-valid")) {
         if(CheckRepeatedMail() == false) {
@@ -44,12 +42,18 @@ signupBtn.addEventListener("click", function() {
         } else {
             addData();
             clearInputs();
+            // remove alert once email is verified
             emailAlert.classList.add("d-none");
         }
+    } else {
+        nameAlert.classList.remove("d-none");
+        emailAlert.classList.remove("d-none");
+        passwordAlert.classList.remove("d-none");
+        successAlert.classList.add("d-none");
     }
 });   
 
-
+//  check if email is repeated
 function CheckRepeatedMail() {
         for (var i =0; i < users.length; i++) {
             if(emailInput.value == users[i].email) {
@@ -68,11 +72,15 @@ function clearInputs(){
         // remove "is-valid" mark after successful submission
         inputs[i].classList.remove("is-valid");
     }
+    // show success-alert after signing-up
+    successAlert.classList.remove("d-none");
 }
 
 //  validate user name
 nameInput.onkeyup = function checkName() {
-    var nameChecker = /^[A-Z0-9a-z_]{3,20}$/gm;
+    //  remove success-alert to start creating another email
+    successAlert.classList.add("d-none");
+    var nameChecker = /^[A-Za-z_]{3,20}$/gm;
     if(nameChecker.test(nameInput.value)) {
         nameInput.classList.add("is-valid");
         nameInput.classList.remove("is-invalid");
@@ -88,6 +96,7 @@ nameInput.onkeyup = function checkName() {
 
 //  validate user email 
 emailInput.onkeyup = function checkMail() {
+    successAlert.classList.add("d-none");
     var emailchecker = /^[a-z0-9._]+@[A-Za-z0-9]+[.][A-Za-z]{2,20}$/gm;
     if(emailchecker.test(emailInput.value)) {
         emailInput.classList.add("is-valid");
@@ -104,6 +113,7 @@ emailInput.onkeyup = function checkMail() {
 
 //  validate user password
 passwordInput.onkeyup = function checkPassword() {
+    successAlert.classList.add("d-none");
     var passChecker = /^[A-Z0-9a-z._@]{6,20}$/gm;
     if(passChecker.test(passwordInput.value)) {
         passwordInput.classList.add("is-valid");
@@ -118,28 +128,23 @@ passwordInput.onkeyup = function checkPassword() {
     }
 }
 
-
-
-
-
 // Check if user already has an account then login
 function login() {
-    for (var i =0; i < users.length; i++) {
-        if(loginMailInput.value == users[i].email && loginPasswordInput.value ==  users[i].password) {
-            loginAlert.classList.add("d-none");
-            // navigate to home page
-            window.location.href = "successfulLogin.html";
-            bla = i;
-            console.log(users[i].name)
-            currentName = users[i].name;
-            // exit once a matching occurs
-            return;
+    if (localStorage.getItem("usersList") != null) {
+        for (var i =0; i < users.length; i++) {
+            if(loginMailInput.value == users[i].email && loginPasswordInput.value ==  users[i].password) {
+                loginAlert.classList.add("d-none");
+                // navigate to home page
+                window.location.href = "successfulLogin.html";
+                // exit once a matching occurs
+                return;
+            }
+            else {
+                loginAlert.classList.remove("d-none");
+            }
         }
-        else {
-            loginAlert.classList.remove("d-none");
-        }
+    } else {
+        loginAlert.classList.remove("d-none");
     }
-}
 
-userName.innerHTML = currentName;
-console.log(currentName);
+}

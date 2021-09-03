@@ -10,13 +10,9 @@ body {
 }
 
 #successfulPage {
-    height: 80vh;
     border-radius: 10px;
 }
 
-.successPage {
-    /* background: #23343e; */
-}
 
 a {
     text-decoration: none;
