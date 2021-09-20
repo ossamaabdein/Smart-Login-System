@@ -3,16 +3,16 @@
         <link rel="stylesheet" href="css/bootstrap.min.css">
         <link rel="stylesheet" href="css/style.css">
         <link rel="stylesheet" href="css/all.min.css">      
-        <title>Sign-up Page</title>
+        <title>Smart Login System</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta name="description" content="A smart sign-up system with a simple user interface">
         <meta http-equiv="Content-Type" content="text/html;charset=UTF-8">
     </head>
     <body>
-        <div class="container">
-            <div id="smartLogin" class="d-flex flex-column align-items-center bg-light rounded py-5 mx-auto">
+            <div id="smartSignup" class="d-flex flex-column align-items-center bg-light rounded py-5 mx-auto">
                 <h1>Smart Login System</h1>
                 <input type="text" id="nameInput" placeholder="Enter your name" class="form-control w-75 mt-3 p-1">
-                <div id="nameAlert" class="alert alert-danger w-75 my-1 py-1 d-none">Enter a name, Please!</div>
+                <div id="nameAlert" class="alert alert-danger w-75 my-1 py-1 d-none">Enter a name, Please! (3 characters at least)</div>
                 <input type="email" id="emailInput" placeholder="Enter your email" class="form-control w-75 mt-3 p-1">
                 <div id="emailAlert" class="alert alert-danger w-75 my-1 py-1 d-none">Enter a valid email. only letters[a-z], numbers[0-9] and (.,_) are allowed</div>
                 <input type="password" id="passwordInput" placeholder="Enter your password" class="form-control w-75 mt-3 p-1">
@@ -21,7 +21,6 @@
                 <button id="signupBtn" class= "btn btn-outline-primary w-75 my-3">Sign Up</button>
                 <h6>Already have an account? <a href="./index.html">Login</a></h6> 
             </div>
-        </div>
 
         <script src="js/popper.min.js"></script>
         <script src="js/bootstrap.min.js"></script>
